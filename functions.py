@@ -66,3 +66,8 @@ def data_():
     with open(LOG_DIR) as f:
         data = map(lambda v: v.strip(), f)
         return list(data)
+
+def read_file(file_name: str):
+    with open(file_name) as file:
+        for line in file:
+            yield line
