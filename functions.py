@@ -67,11 +67,6 @@ def data_():
         data = map(lambda v: v.strip(), f)
         return list(data)
 
-def read_file(file_name: str):
-    with open(file_name) as file:
-        for line in file:
-            yield line
-
 def get_query(cmd: str, parametr_, data=None):
     if cmd == 'filter':
         return filter_(parametr_=parametr_, data=data)
