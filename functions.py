@@ -78,4 +78,3 @@ def get_query(cmd: str, parametr_, data=None):
         return sorted_(parametr_=parametr_, data=data)
     elif cmd == 'unique':
         return unique_(parametr_=parametr_, data=data)
-    
