@@ -71,3 +71,16 @@ def read_file(file_name: str):
     with open(file_name) as file:
         for line in file:
             yield line
+
+def get_query(cmd: str, parametr_, data=None):
+    if cmd == 'filter':
+        return filter_(parametr_=parametr_, data=data)
+    elif cmd == 'limit':
+        return limited_(parametr_=parametr_, data=data)
+    elif cmd == 'map':
+        return mapping(parametr_=parametr_, data=data)
+    elif cmd == 'sort':
+        return sorted_(parametr_=parametr_, data=data)
+    elif cmd == 'unique':
+        return unique_(parametr_=parametr_, data=data)
+    
