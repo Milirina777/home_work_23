@@ -4,65 +4,47 @@ from constants import LOG_DIR
 def mapping(str_, data=None):
     """Возвращает по номеру колонки требуемую колонку из массива"""
     if data is None:
-        data = data_()
+        data = data_base()
     colomn_ = int(str_)
 
     return list(map(lambda row: row.split(' ')[colomn_], data))
 
 
-def filter_(str_, data=None):
+def filter_data(str_, data=None):
     """Возвращает строки по вводимому значению с этим значением"""
     if data is None:
-        data = data_()
+        data = data_base()
 
     return list(filter(lambda row: row if str_ in row else None, data))
 
 
-def unique_(str_, data):
+def unique_data(str_, data):
     """Возвращает массив с уникальными значениями"""
-    result = []
-    seen = set()
-    for row in data:
-        if row in seen:
-            continue
-        else:
-            result.append(row)
-            seen.add(row)
-
-    return result
+    return list(set(data))
 
 
-def sorted_(str_, data=None):
+def sorted_data(str_, data=None):
     """Сортирует массив"""
     if data is None:
-        data = data_()
-    if str_ == 'asc':
-        return sorted(data)
-    elif str_ == 'desc':
+        data = data_base()
+    if str_ == 'desc':
         return sorted(data, reverse=True)
+    return sorted(data)
 
 
-def limited_(str_, data=None):
+def limited_data(str_, data=None):
     """Лимитирует вывод данных с массива"""
     if data is None:
-        data = data_()
+        data = data_base()
     value = int(str_)
-    counter = 0
-    result = []
-    while counter < value:
-        for i in data:
-            result.append(i)
-            counter += 1
-            if counter == value:
-                break
 
-    return result
+    return data[: int(value)]
 
 
 FILE_NAME = './apache_logs.txt'
 
 
-def data_():
+def data_base():
     """Формирует массив с данными"""
     with open(LOG_DIR) as f:
         data = map(lambda v: v.strip(), f)
@@ -70,12 +52,12 @@ def data_():
 
 def get_query(cmd: str, str_, data=None):
     if cmd == 'filter':
-        return filter_(str_=str_, data=data)
+        return filter_data(str_=str_, data=data)
     elif cmd == 'limit':
-        return limited_(str_=str_, data=data)
+        return limited_data(str_=str_, data=data)
     elif cmd == 'map':
         return mapping(str_=str_, data=data)
     elif cmd == 'sort':
-        return sorted_(str_=str_, data=data)
+        return sorted_data(str_=str_, data=data)
     elif cmd == 'unique':
-        return unique_(str_=str_, data=data)
+        return unique_data(str_=str_, data=data)
