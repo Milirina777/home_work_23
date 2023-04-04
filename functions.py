@@ -1,11 +1,11 @@
 from constants import LOG_DIR
 
 
-def mapping(colomn_, data=None):
+def mapping(str_, data=None):
     """Возвращает по номеру колонки требуемую колонку из массива"""
     if data is None:
         data = data_()
-    colomn_ = int(colomn_)
+    colomn_ = int(str_)
 
     return list(map(lambda row: row.split(' ')[colomn_], data))
 
@@ -31,21 +31,21 @@ def unique_(data):
     return result
 
 
-def sorted_(asc, data=None):
+def sorted_(str_, data=None):
     """Сортирует массив"""
     if data is None:
         data = data_()
-    if asc == 'asc':
+    if str_ == 'asc':
         return sorted(data)
-    elif asc == 'desc':
+    elif str_ == 'desc':
         return sorted(data, reverse=True)
 
 
-def limited_(value, data=None):
+def limited_(str_, data=None):
     """Лимитирует вывод данных с массива"""
     if data is None:
         data = data_()
-    value = int(value)
+    value = int(str_)
     counter = 0
     result = []
     while counter < value:
@@ -67,14 +67,14 @@ def data_():
         data = map(lambda v: v.strip(), f)
         return list(data)
 
-def get_query(cmd: str, parametr_, data=None):
+def get_query(cmd: str, str_, data=None):
     if cmd == 'filter':
-        return filter_(parametr_=parametr_, data=data)
+        return filter_(str_=str_, data=data)
     elif cmd == 'limit':
-        return limited_(parametr_=parametr_, data=data)
+        return limited_(str_=str_, data=data)
     elif cmd == 'map':
-        return mapping(parametr_=parametr_, data=data)
+        return mapping(str_=str_, data=data)
     elif cmd == 'sort':
-        return sorted_(parametr_=parametr_, data=data)
+        return sorted_(str_=str_, data=data)
     elif cmd == 'unique':
-        return unique_(parametr_=parametr_, data=data)
+        return unique_(str_=str_, data=data)
