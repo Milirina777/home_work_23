@@ -18,7 +18,7 @@ def filter_(str_, data=None):
     return list(filter(lambda row: row if str_ in row else None, data))
 
 
-def unique_(data):
+def unique_(str_, data):
     """Возвращает массив с уникальными значениями"""
     result = []
     seen = set()
