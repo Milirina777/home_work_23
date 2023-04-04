@@ -1,4 +1,5 @@
 import os
+
 from flask import Flask, request, jsonify
 from constants import DATA_DIR
 from marshmallow import ValidationError
@@ -6,8 +7,6 @@ from schema import RequestJsonSchema
 from functions import get_query
 
 app = Flask(__name__)
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 @app.route("/perform_query/", methods=["POST"])
 def perform_query():
@@ -32,4 +31,4 @@ def perform_query():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=25000, debug=True)
