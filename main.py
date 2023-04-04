@@ -1,5 +1,4 @@
 import os
-
 from flask import Flask, request, jsonify
 from constants import DATA_DIR
 from marshmallow import ValidationError

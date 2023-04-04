@@ -28,6 +28,7 @@ def unique_(data):
         else:
             result.append(row)
             seen.add(row)
+
     return result
 
 
